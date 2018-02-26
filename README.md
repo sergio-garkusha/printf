@@ -2,6 +2,8 @@
 
 ### Low-level programming & Algorithms
 
+Max Stuart and Sergii Garkusha
+
 Based on the ["Secrets of “printf”"](http://www.cypress.com/file/54761/download) scientific paper by Professor Don Colton
 
 #### Requirements
