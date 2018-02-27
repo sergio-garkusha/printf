@@ -9,10 +9,10 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j, count = 0;
+	int i, j, n, count = 0;
 	char cbuf;
-/*	int *ibuf = 0; */
 	char *sbuf;
+	int ibuf, tmp;
 	va_list lst;
 
 	va_start(lst, format);
@@ -42,6 +42,28 @@ int _printf(const char *format, ...)
 					write(1, &sbuf[j], 1);
 					count += 1;
 				}
+			}
+			else if (format[i + 1] == 'd' || format [i + 1] == 'i')
+			{
+				ibuf = va_arg(lst, int);
+				tmp = ibuf;
+				for (n = 0; tmp / 10 != 0; n++)
+					tmp = tmp / 10;
+				sbuf = malloc(sizeof(char) * (n + 1));
+				if (sbuf == NULL)
+					return(count);
+				for (j = 0; ibuf / 10 != 0; j++)
+				{
+					sbuf[j] = ibuf % 10;
+					ibuf = ibuf / 10;
+				}
+				sbuf[j] = ibuf % 10;
+				for ( ; j >= 0; j--)
+				{
+					write(1, &sbuf[j + '0'], 1);
+					count += 1;
+				}
+				free(sbuf);
 			}
 			i++;
 		}
