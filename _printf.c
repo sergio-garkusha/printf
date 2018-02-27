@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 					sbuf[j] = (ibuf % 10) + '0';
 					ibuf = ibuf / 10;
 				}
-				sbuf[j] = ibuf % 10;
+				sbuf[j] = (ibuf % 10) + '0';
 				for ( ; j >= 0; j--)
 				{
 					write(1, &sbuf[j], 1);
