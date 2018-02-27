@@ -35,9 +35,7 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] == 's')
 			{
 				sbuf = va_arg(lst, char *);
-				if (sbuf != NULL)
-					;
-				else
+				if (sbuf == NULL)
 					sbuf = "(null)";
 				for (j = 0; sbuf[j]; j++)
 				{
