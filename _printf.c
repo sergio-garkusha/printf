@@ -54,13 +54,13 @@ int _printf(const char *format, ...)
 					return(count);
 				for (j = 0; ibuf / 10 != 0; j++)
 				{
-					sbuf[j] = ibuf % 10;
+					sbuf[j] = (ibuf % 10) + '0';
 					ibuf = ibuf / 10;
 				}
 				sbuf[j] = ibuf % 10;
 				for ( ; j >= 0; j--)
 				{
-					write(1, &sbuf[j + '0'], 1);
+					write(1, &sbuf[j], 1);
 					count += 1;
 				}
 				free(sbuf);
