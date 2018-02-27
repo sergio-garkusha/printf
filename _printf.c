@@ -1,13 +1,13 @@
 #include "holberton.h"
 
 /**
- * printf - takes a string and args of each '%s' and '%c and prints them
+ * _printf - takes a string and args of each '%s' and '%c and prints them
  * @format: initial string containing % + char denoting type and number of args
  * @...: variable list of arguments
  *
  * Return: number of characters printed.
  */
-int _printf(const char * format, ...)
+int _printf(const char *format, ...)
 {
 	int i, j, count = 0;
 	char cbuf;
@@ -34,16 +34,16 @@ int _printf(const char * format, ...)
 			}
 			else if (format[i + 1] == 's')
 			{
-				if ((sbuf = va_arg(lst, char *)) != NULL)
-				{
-					for (j = 0; sbuf[j]; j++)
-					{
-						write(1, &sbuf[j], 1);
-						count += 1;
-					}
-				}
+				sbuf = va_arg(lst, char *);
+				if (sbuf != NULL)
+					;
 				else
-					return (-1);
+					sbuf = "(null)";
+				for (j = 0; sbuf[j]; j++)
+				{
+					write(1, &sbuf[j], 1);
+					count += 1;
+				}
 			}
 			i++;
 		}
