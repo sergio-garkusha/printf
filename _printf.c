@@ -26,11 +26,11 @@ int _printf(const char *format, ...)
 
 	va_start(lst, format);
 	for (i = 0; format[i]; i++)
-	{
 		if (format[i] == '%')
 		{
 			i++;
 			for (; format[i] != '\0'; i++)
+			{
 				for (j = 0; ids[j].id != '\0'; j++)
 					if (format[i] == ids[j].id)
 					{
@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 					}
 				if (ids[j].id)
 					break;
-
+			}
 			if (format[i] == '\0')
 				return (-1);
 		}
@@ -48,7 +48,6 @@ int _printf(const char *format, ...)
 			write(1, &format[i], 1);
 			count += 1;
 		}
-	}
 
 	va_end(lst);
 	return (count);
