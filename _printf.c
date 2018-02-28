@@ -23,7 +23,6 @@ int _printf(const char *format, ...)
 		{'%', _print_mod},
 		{'\0', NULL}
 	};
-
 	va_start(lst, format);
 
 	for (i = 0; format[i]; i++)
