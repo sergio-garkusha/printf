@@ -35,3 +35,11 @@ Based on the ["Secrets of printf"](http://www.cypress.com/file/54761/download) s
 * All files will be compiled on Ubuntu 14.04 LTS
 * Programs and functions will be compiled with gcc 4.8.4 using the flags `-Wall -Werror -Wextra and -pedantic`
 * code will be compiled this way: `gcc -Wall -Werror -Wextra -pedantic *.c`
+
+##### Tests
+* The `main.c` file with tests contains all the tests
+* The `main.c` file is commited under the `test` folder
+* To make it work:
+	* Make a symbolic link to the `test/main.c` file to the root of the project: `ln -s test/main.c .`
+	* Compile project with `-Wno-format` extra flag: `gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c`
+	* Do not push any `.c` file containting a main function in the root directory of the project
