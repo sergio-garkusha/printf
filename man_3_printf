@@ -1,0 +1,42 @@
+.TH _PRINTF 1 "27 February 2018" "1" "_printf() Manual"
+.SH NAME
+_printf()
+
+The _printf function recreates printf() form stdio.
+.SH SYNOPSIS
+.B #include "holberton.h"
+
+.B int _printf(const char \fI*format\fR,
+.B ...)
+
+.SH DESCRIPTION
+Writes formatted output.
+
+.B Return Value
+.RS 3
+The function returns the number of characters printed (excluding the null byte), or -1, if error.
+.RE
+
+.SH NOTES
+The program doesn't account for flags, fields, precision, or length modifiers.
+
+.SH EXAMPLE
+.RS 3
+To print a sentence with conversion specifiers:
+
+.RE
+
+.RS 8
+#include "holberton.h"
+
+_printf("%s has %d studio albums.", "Kraftwerk", 10);
+.RE
+
+.RS 3
+Output : "Kraftwerk has 10 studio albums."
+.RE
+
+.SH SEE ALSO
+.B printf(3)
+.SH AUTHOR
+Max Stuart, Sergii Garkusha
