@@ -63,42 +63,29 @@ int _print_string(va_list ls)
  */
 int _print_int(va_list ls)
 {
-	int n, tmp, j, count = 0;
-	int ibuf = va_arg(ls, int);
-	char *sbuf;
-	char is_neg;
+	int a, expo = 1, len = 0;
+	unsigned int n;
+	char pr;
 
-	is_neg = (ibuf < 0) ? '-' : '\0';
+	a = va_arg(ls, int);
 
-	tmp = ibuf;
-
-	for (n = 0; tmp / 10 != 0; n++)
-		tmp = tmp / 10;
-
-	sbuf = malloc(sizeof(char) * (n + 1));
-
-	if (sbuf == NULL)
-		exit(-1);
-
-	for (j = 0; ibuf / 10 != 0; j++)
+	if (a < 0)
 	{
-		sbuf[j] = (ibuf % 10) + '0';
-		ibuf = ibuf / 10;
+		pr = '-';
+		len = len + write(1, &pr, 1);
+		n = a * -1;
 	}
-	sbuf[j] = (ibuf % 10) + '0';
+	else
+		n = a;
+	while (n / expo > 9)
+		expo *= 10;
 
-	if (is_neg)
+	while (expo != 0)
 	{
-		write(1, &is_neg, 1);
-		count += 1;
+		pr = n / expo + '0';
+		len = len + write(1, &pr, 1);
+		n = n % expo;
+		expo = expo / 10;
 	}
-
-	for (; j >= 0; j--)
-	{
-		write(1, &sbuf[j], 1);
-		count += 1;
-	}
-
-	free(sbuf);
-	return (count);
+	return (len);
 }
