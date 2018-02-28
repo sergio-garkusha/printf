@@ -1,11 +1,17 @@
-#ifndef holberton
-#define holberton
+#ifndef _holberton_h_
+#define _holberton_h_
 
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
-typedef struct
+/**
+ * struct intface - interface for printing
+ * @id: the character, which identifies the type of
+ * the argument
+ * @fn: function to run if id matches
+ */
+typedef struct intface
 {
 	char id;
 	int (*fn)(va_list);
