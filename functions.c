@@ -1,5 +1,6 @@
 #include "holberton.h"
 
+
 /**
  * _print_char - prints character from the corresponging
  * argument from the arguments list
@@ -12,7 +13,7 @@ int _print_char(va_list ls)
 	char c = va_arg(ls, int);
 
 	write(1, &c, 1);
-	return(1);
+	return (1);
 }
 
 /**
