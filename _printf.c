@@ -25,23 +25,31 @@ int _printf(const char *format, ...)
 	};
 
 	va_start(lst, format);
-
 	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
-			for (j = 0; ids[j].id != '\0'; j++)
-				if (format[i + 1] == ids[j].id)
-					count += ids[j].fn(lst);
+			i++;
+			for (; format[i] != '\0'; i++)
+				for (j = 0; ids[j].id != '\0'; j++)
+					if (format[i] == ids[j].id)
+					{
+						count += ids[j].fn(lst);
+						break;
+					}
+				if (ids[j].id)
+					break;
 
-			i += 2;
+			if (format[i] == '\0')
+				return (-1);
 		}
-
-		write(1, &format[i], 1);
-		count += 1;
+		else
+		{
+			write(1, &format[i], 1);
+			count += 1;
+		}
 	}
 
 	va_end(lst);
-
 	return (count);
 }
