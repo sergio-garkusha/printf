@@ -63,10 +63,16 @@ int _print_string(va_list ls)
  */
 int _print_int(va_list ls)
 {
-	int n, j, count = 0;
+	int n, tmp, is_neg, j, count = 0;
 	int ibuf = va_arg(ls, int);
-	int tmp = ibuf;
 	char *sbuf;
+
+	is_neg = (ibuf < 0) ? 1 : 0;
+
+	if (is_neg)
+		ibuf = ibuf * -1;
+
+	tmp = ibuf;
 
 	for (n = 0; tmp / 10 != 0; n++)
 		tmp = tmp / 10;
@@ -91,6 +97,9 @@ int _print_int(va_list ls)
 	}
 
 	free(sbuf);
+
+	if (is_neg)
+		ibuf = ibuf * -1;
 
 	return (count);
 }
