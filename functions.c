@@ -1,5 +1,5 @@
 #include "holberton.h"
-
+#include <stdio.h>
 
 /**
  * _print_char - prints character from the corresponging
@@ -63,10 +63,14 @@ int _print_string(va_list ls)
  */
 int _print_int(va_list ls)
 {
-	int n, j, count = 0;
+	int n, tmp, j, count = 0;
 	int ibuf = va_arg(ls, int);
-	int tmp = ibuf;
 	char *sbuf;
+	char is_neg;
+
+	is_neg = (ibuf < 0) ? '-' : '\0';
+
+	tmp = ibuf;
 
 	for (n = 0; tmp / 10 != 0; n++)
 		tmp = tmp / 10;
@@ -81,8 +85,13 @@ int _print_int(va_list ls)
 		sbuf[j] = (ibuf % 10) + '0';
 		ibuf = ibuf / 10;
 	}
-
 	sbuf[j] = (ibuf % 10) + '0';
+
+	if (is_neg)
+	{
+		write(1, &is_neg, 1);
+		count += 1;
+	}
 
 	for (; j >= 0; j--)
 	{
@@ -91,6 +100,5 @@ int _print_int(va_list ls)
 	}
 
 	free(sbuf);
-
 	return (count);
 }
